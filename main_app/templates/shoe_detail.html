@@ -1,0 +1,10 @@
+<h1>{{ shoe.name }}</h1>
+<p>Brand: {{ shoe.brand }}</p>
+<p>Price: ${{ shoe.price }}</p>
+<p>Style: {{ shoe.style }}</p>
+{% if shoe.image_url %}
+    <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}" style="max-width:300px;">
+{% endif %}
+<a href="{% url 'update_shoe' shoe.pk %}">Edit</a>
+<a href="{% url 'delete_shoe' shoe.pk %}">Delete</a>
+<a href="{% url 'home' %}">Back to Shoes</a>

@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>All Shoes</h1>
+<a href="{% url 'create_shoe' %}" class="add-shoe">Add a New Shoe</a>
+<ul class="shoe-list">
+    {% for shoe in shoes %}
+        <li class="shoe-item">
+            <a href="{% url 'shoe_detail' shoe.pk %}" class="shoe-link">{{ shoe.name }} - {{ shoe.brand }}</a>
+            <a href="{% url 'update_shoe' shoe.pk %}" class="edit-link">Edit</a>
+            <a href="{% url 'delete_shoe' shoe.pk %}" class="delete-link">Delete</a>
+        </li>
+    {% empty %}
+        <li>No shoes available yet. Add one!</li>
+    {% endfor %}
+</ul>
+{% endblock %}

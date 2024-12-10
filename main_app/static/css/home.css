@@ -1,0 +1,49 @@
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.add-shoe {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-shoe:hover {
+    background-color: #0056b3;
+}
+
+.shoe-list {
+    list-style: none;
+    padding: 0;
+}
+
+.shoe-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shoe-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.edit-link {
+    color: #ffc107;
+    margin-left: 10px;
+}
+
+.delete-link {
+    color: #dc3545;
+    margin-left: 10px;
+}

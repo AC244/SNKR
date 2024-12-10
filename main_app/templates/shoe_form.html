@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/shoe_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>{{ form.instance.pk|yesno:"Update Shoe,Add a New Shoe" }}</h1>
+<div class="form-container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Save</button>
+        <a href="{% url 'home' %}" class="cancel-button">Cancel</a>
+    </form>
+</div>
+{% endblock %}
