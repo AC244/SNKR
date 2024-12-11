@@ -3,27 +3,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNKR App</title>
-    <!-- Base CSS -->
+    <title>SNKR</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block head %}
-    <!-- Additional page-specific CSS -->
     {% endblock %}
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">All Shoes</a></li>
-                <li><a href="{% url 'create_shoe' %}">Add Shoe</a></li>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{% url 'home' %}">SNKR</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'create_shoe' %}">Add Shoe</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-button">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
     <main>
         {% block content %}
-        <!-- Page content will go here -->
         {% endblock %}
     </main>
 </body>
