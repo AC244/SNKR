@@ -15,5 +15,7 @@ urlpatterns = [
     path('shoe/<int:pk>/favorite/', views.toggle_favorite, name='toggle_favorite'),
     path('favorites/', views.favorite_shoes, name='favorite_shoes'),
     path('about/', views.about, name='about'),
+    path('users/', views.user_list, name='user_list'),
+    path('profile/<int:user_id>/', views.user_profile, name='user_profile'),
 
 ]

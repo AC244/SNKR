@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>{{ profile_user.username }}'s Favorite Shoes</h1>
+
+<div class="shoe-container">
+    {% for shoe in shoes %}
+        <div class="shoe-card">
+            {% if shoe.image_url %}
+                <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}" class="shoe-image">
+            {% else %}
+                <img src="{% static 'images/placeholder.png' %}" alt="No Image" class="shoe-image">
+            {% endif %}
+            <div class="shoe-details">
+                <h3>{{ shoe.name }}</h3>
+                <p><strong>Brand:</strong> {{ shoe.brand }}</p>
+                <p><strong>Style:</strong> {{ shoe.style }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>{{ profile_user.username }} hasn't favorited any shoes yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

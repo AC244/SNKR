@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-
+from django.contrib.auth.models import User
 
 # Landing Page View
 def landing_page(request):
@@ -27,6 +27,19 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
+
+@login_required
+def user_list(request):
+    """Display a list of all users."""
+    users = User.objects.exclude(id=request.user.id)  # Exclude the current user
+    return render(request, 'user_list.html', {'users': users})
+
+@login_required
+def user_profile(request, user_id):
+    """Display a specific user's favorite shoes."""
+    user = User.objects.get(id=user_id)
+    favorite_shoes = user.favorite_shoes.all()
+    return render(request, 'user_profile.html', {'profile_user': user, 'shoes': favorite_shoes})
 
     
 def home(request):

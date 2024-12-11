@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/user_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>All Users</h1>
+
+<div class="user-list">
+    {% for user in users %}
+        <div class="user-card">
+            <h3>{{ user.username }}</h3>
+            <a href="{% url 'user_profile' user.id %}" class="view-profile">View Favorite Shoes</a>
+        </div>
+    {% empty %}
+        <p>No users found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
