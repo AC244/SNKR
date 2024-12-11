@@ -3,6 +3,24 @@ from .models import Shoe
 from .forms import ShoeForm
 from django.contrib.auth.decorators import login_required
 
+# Landing Page View
+def landing_page(request):
+    return render(request, 'landing_page.html')
+
+
+# Signup View
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after signing up
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+
 # View all shoes (Read)
 def home(request):
     shoes = Shoe.objects.all()
