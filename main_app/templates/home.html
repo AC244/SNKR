@@ -1,6 +1,6 @@
-
 {% extends 'base.html' %}
 {% load static %}
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
@@ -8,15 +8,24 @@
 {% block content %}
 <h1>All Shoes</h1>
 <a href="{% url 'create_shoe' %}" class="add-shoe">Add a New Shoe</a>
-<ul class="shoe-list">
+
+<div class="shoe-container">
     {% for shoe in shoes %}
-        <li class="shoe-item">
-            <a href="{% url 'shoe_detail' shoe.pk %}" class="shoe-link">{{ shoe.name }} - {{ shoe.brand }}</a>
-            <a href="{% url 'update_shoe' shoe.pk %}" class="edit-link">Edit</a>
-            <a href="{% url 'delete_shoe' shoe.pk %}" class="delete-link">Delete</a>
-        </li>
+        <a href="{% url 'shoe_detail' shoe.pk %}" class="shoe-card">
+            {% if shoe.image_url %}
+                <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}" class="shoe-image">
+            {% else %}
+                <img src="{% static 'images/placeholder.png' %}" alt="No Image" class="shoe-image">
+            {% endif %}
+            <div class="shoe-details">
+                <h3>{{ shoe.name }}</h3>
+                <p><strong>Brand:</strong> {{ shoe.brand }}</p>
+                <p><strong>Style:</strong> {{ shoe.style }}</p>
+                <p><strong>Price:</strong> ${{ shoe.price }}</p>
+            </div>
+        </a>
     {% empty %}
-        <li>No shoes available yet. Add one!</li>
+        <p>No shoes available yet. Add one!</p>
     {% endfor %}
-</ul>
+</div>
 {% endblock %}

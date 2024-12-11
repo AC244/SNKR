@@ -10,7 +10,9 @@
     <h1>{{ shoe.name }}</h1>
     <div class="detail-card">
         {% if shoe.image_url %}
-            <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}">
+            <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}" class="detail-image">
+        {% else %}
+            <img src="{% static 'images/placeholder.png' %}" alt="No Image" class="detail-image">
         {% endif %}
         <p><strong>Brand:</strong> {{ shoe.brand }}</p>
         <p><strong>Style:</strong> {{ shoe.style }}</p>
@@ -18,6 +20,7 @@
     </div>
     <div class="button-group">
         <a href="{% url 'update_shoe' shoe.pk %}" class="edit-button">Edit</a>
+        <a href="{% url 'delete_shoe' shoe.pk %}" class="delete-button">Delete</a>
         <a href="{% url 'home' %}" class="back-button">Back to Shoes</a>
     </div>
 </div>

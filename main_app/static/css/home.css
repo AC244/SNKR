@@ -1,3 +1,4 @@
+/* General Page Styles */
 h1 {
     color: #333;
     margin-bottom: 20px;
@@ -17,33 +18,88 @@ h1 {
     background-color: #0056b3;
 }
 
-.shoe-list {
-    list-style: none;
-    padding: 0;
-}
-
-.shoe-item {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
+/* Shoe Container Styles */
+.shoe-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
 }
 
-.shoe-link {
-    color: #007bff;
+.shoe-card {
+    display: block;
+    width: 300px;
     text-decoration: none;
+    color: inherit;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
 }
 
-.edit-link {
-    color: #ffc107;
-    margin-left: 10px;
+.shoe-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.delete-link {
-    color: #dc3545;
-    margin-left: 10px;
+.shoe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-color: #f4f4f4;
+}
+
+.shoe-details {
+    padding: 15px;
+}
+
+.shoe-details h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.shoe-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+
+.button-group {
+    margin-top: 10px;
+}
+
+.detail-button, .edit-button, .delete-button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.detail-button {
+    background-color: #007bff;
+}
+
+.edit-button {
+    background-color: #ffc107;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.detail-button:hover {
+    background-color: #0056b3;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
 }
