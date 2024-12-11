@@ -1,7 +1,18 @@
-<h1>Delete Shoe</h1>
-<p>Are you sure you want to delete "{{ shoe.name }}"?</p>
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
-</form>
-<a href="{% url 'home' %}">Cancel</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/shoe_confirm_delete.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <h1>Delete Shoe</h1>
+    <p>Are you sure you want to delete "<strong>{{ shoe.name }}</strong>"?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="delete-button">Yes, Delete</button>
+        <a href="{% url 'home' %}" class="cancel-button">Cancel</a>
+    </form>
+</div>
+{% endblock %}
