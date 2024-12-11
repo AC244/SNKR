@@ -9,6 +9,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+
 # Landing Page View
 def landing_page(request):
     return render(request, 'landing_page.html')
