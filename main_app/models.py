@@ -9,6 +9,7 @@ class Shoe(models.Model):
     style = models.CharField(max_length=50, blank=True, null=True)
     image_url = models.URLField(blank=True, null=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    favorited_by = models.ManyToManyField(User, related_name='favorite_shoes', blank=True)
 
     def __str__(self):
         return self.name

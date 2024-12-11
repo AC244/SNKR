@@ -16,9 +16,9 @@
                 <a href="{% url 'home' %}">SNKR</a>
             </div>
             <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'create_shoe' %}">Add Shoe</a></li>
+                    <li><a href="{% url 'favorite_shoes' %}">Favorites</a></li>
                     <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}

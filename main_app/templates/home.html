@@ -7,6 +7,13 @@
 
 {% block content %}
 <h1>All Shoes</h1>
+
+<!-- Search Bar -->
+<form method="GET" action="{% url 'home' %}" class="search-form">
+    <input type="text" name="q" placeholder="Search for shoes..." value="{{ query }}" />
+    <button type="submit">Search</button>
+</form>
+
 <a href="{% url 'create_shoe' %}" class="add-shoe">Add a New Shoe</a>
 
 <div class="shoe-container">
@@ -22,10 +29,45 @@
                 <p><strong>Brand:</strong> {{ shoe.brand }}</p>
                 <p><strong>Style:</strong> {{ shoe.style }}</p>
                 <p><strong>Price:</strong> ${{ shoe.price }}</p>
+                <!-- Favorite Button -->
+                <a href="#" data-shoe-id="{{ shoe.pk }}" class="favorite-button">
+                    {% if user.is_authenticated %}
+                        {% if user in shoe.favorited_by.all %}
+                            Unfavorite ❤️
+                        {% else %}
+                            Favorite ♡
+                        {% endif %}
+                    {% else %}
+                        <span>Login to favorite shoes</span>
+                    {% endif %}
+                </a>
             </div>
         </a>
     {% empty %}
-        <p>No shoes available yet. Add one!</p>
+        <p>No shoes found matching your search. Try again!</p>
     {% endfor %}
 </div>
+
+<script>
+    document.querySelectorAll('.favorite-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const shoeId = this.dataset.shoeId;
+            fetch(`/shoe/${shoeId}/favorite/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.favorited) {
+                    this.innerText = 'Unfavorite ❤️';
+                } else {
+                    this.innerText = 'Favorite ♡';
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shoe
 from .forms import ShoeForm
-
+from django.http import JsonResponse
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 # Landing Page View
 def landing_page(request):
@@ -25,10 +28,18 @@ def signup(request):
 
 
     
-# View all shoes (Read)
 def home(request):
-    shoes = Shoe.objects.all()
-    return render(request, 'home.html', {'shoes': shoes})
+    query = request.GET.get('q', '')  
+    if query:
+        shoes = Shoe.objects.filter(
+            Q(name__icontains=query) | 
+            Q(brand__icontains=query) | 
+            Q(style__icontains=query)
+        )
+    else:
+        shoes = Shoe.objects.all()
+    
+    return render(request, 'home.html', {'shoes': shoes, 'query': query})
 
 class Home(LoginView):
     template_name = 'home.html'
@@ -70,3 +81,27 @@ def delete_shoe(request, pk):
 def shoe_detail(request, pk):
     shoe = get_object_or_404(Shoe, pk=pk)
     return render(request, 'shoe_detail.html', {'shoe': shoe})
+
+
+def toggle_favorite(request, pk):
+    if request.user.is_authenticated:
+        shoe = get_object_or_404(Shoe, pk=pk)
+        if request.user in shoe.favorited_by.all():
+            shoe.favorited_by.remove(request.user)
+            favorited = False
+        else:
+            shoe.favorited_by.add(request.user)
+            favorited = True
+        return JsonResponse({'favorited': favorited})
+    return JsonResponse({'error': 'User not authenticated'}, status=401)
+
+
+@login_required
+def favorite_shoes(request):
+    """Display all favorite shoes for the logged-in user."""
+    favorite_shoes = request.user.favorite_shoes.all()
+    return render(request, 'favorite_shoes.html', {'shoes': favorite_shoes})
+
+def about(request):
+    """About Page View."""
+    return render(request, 'about.html')

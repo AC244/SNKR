@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>About SNKR</h1>
+    <p>
+        Welcome to <strong>SNKR</strong> – your ultimate shoe collection app!
+        SNKR allows users to view, manage, and curate their dream shoe collection.
+        Favorite your favorite shoes, keep track of new additions, and find the perfect pair.
+    </p>
+    <p>
+        This app was built using the Django framework and is designed to provide a smooth and interactive experience.
+        Stay tuned for updates and new features!
+    </p>
+</div>
+{% endblock %}

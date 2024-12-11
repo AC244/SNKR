@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Your Favorite Shoes</h1>
+
+<div class="shoe-container">
+    {% for shoe in shoes %}
+        <a href="{% url 'shoe_detail' shoe.pk %}" class="shoe-card">
+            {% if shoe.image_url %}
+                <img src="{{ shoe.image_url }}" alt="{{ shoe.name }}" class="shoe-image">
+            {% else %}
+                <img src="{% static 'images/placeholder.png' %}" alt="No Image" class="shoe-image">
+            {% endif %}
+            <div class="shoe-details">
+                <h3>{{ shoe.name }}</h3>
+                <p><strong>Brand:</strong> {{ shoe.brand }}</p>
+                <p><strong>Style:</strong> {{ shoe.style }}</p>
+                <p><strong>Price:</strong> ${{ shoe.price }}</p>
+            </div>
+        </a>
+    {% empty %}
+        <p>You haven't favorited any shoes yet. Go to the <a href="{% url 'home' %}">home page</a> to favorite some!</p>
+    {% endfor %}
+</div>
+{% endblock %}

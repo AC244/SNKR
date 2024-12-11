@@ -12,4 +12,8 @@ urlpatterns = [
     path('shoe/<int:pk>/', views.shoe_detail, name='shoe_detail'),  # View details
     path('shoe/<int:pk>/edit/', views.update_shoe, name='update_shoe'),  # Update
     path('shoe/<int:pk>/delete/', views.delete_shoe, name='delete_shoe'),  # Delete
+    path('shoe/<int:pk>/favorite/', views.toggle_favorite, name='toggle_favorite'),
+    path('favorites/', views.favorite_shoes, name='favorite_shoes'),
+    path('about/', views.about, name='about'),
+
 ]
