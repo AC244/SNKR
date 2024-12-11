@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Shoe
 from .forms import ShoeForm
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 
 # Landing Page View
 def landing_page(request):
@@ -21,10 +24,14 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+    
 # View all shoes (Read)
 def home(request):
     shoes = Shoe.objects.all()
     return render(request, 'home.html', {'shoes': shoes})
+
+class Home(LoginView):
+    template_name = 'home.html'
 
 # Create a new shoe (Create)
 @login_required
