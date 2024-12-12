@@ -20,6 +20,7 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'user_list' %}">Users</a></li>
                     <li><a href="{% url 'favorite_shoes' %}">Favorites</a></li>
+                    <li><a href="{% url 'forum' %}">Forum</a></li>
                     <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}

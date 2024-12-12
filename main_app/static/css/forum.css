@@ -1,0 +1,121 @@
+/* Forum Page Container */
+.forum-container {
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Forum Post - Message Bubble */
+.forum-post {
+    background: #2c2c3e;
+    color: #dcdcdc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+}
+
+/* Header - Username and Timestamp */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #9db2d4;
+}
+
+/* Message Content */
+.post-content h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.post-content p {
+    margin: 5px 0 0;
+    color: #dcdcdc;
+    font-size: 1rem;
+}
+
+/* Image Container */
+.post-image-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.post-image {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 10px;
+    background-color: #121212;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Time Styling */
+.post-time {
+    font-size: 0.8rem;
+    color: #b0b0b0;
+}
+
+/* Button to Add Post */
+.add-button {
+    display: inline-block;
+    margin: 10px 0;
+    background: #4a4e69;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background: #6c708d;
+}
+
+/* Action Buttons */
+.post-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button, .delete-button, .submit-button, .cancel-button {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #4a4e69;
+}
+
+.delete-button {
+    background-color: #b3404a;
+}
+
+.cancel-button {
+    background-color: #6c708d;
+}
+
+.submit-button:hover, .edit-button:hover {
+    background-color: #6c708d;
+}
+
+.delete-button:hover {
+    background-color: #d9534f;
+}
+
+.cancel-button:hover {
+    background-color: #4a4e69;
+}

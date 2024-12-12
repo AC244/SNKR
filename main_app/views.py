@@ -9,6 +9,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from .models import ForumPost
+from .forms import ForumPostForm
 
 # Landing Page View
 def landing_page(request):
@@ -119,3 +121,44 @@ def favorite_shoes(request):
 def about(request):
     """About Page View."""
     return render(request, 'about.html')
+
+# Read - Display all forum posts
+def forum(request):
+    posts = ForumPost.objects.all().order_by('-created_at')
+    return render(request, 'forum.html', {'posts': posts})
+
+# Create - Allow logged-in users to create posts
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = ForumPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('forum')
+    else:
+        form = ForumPostForm()
+    return render(request, 'create_post.html', {'form': form})
+
+# Update - Allow users to edit their posts
+@login_required
+def update_post(request, pk):
+    post = get_object_or_404(ForumPost, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = ForumPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('forum')
+    else:
+        form = ForumPostForm(instance=post)
+    return render(request, 'update_post.html', {'form': form, 'post': post})
+
+# Delete - Allow users to delete their posts
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(ForumPost, pk=pk, user=request.user)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('forum')
+    return render(request, 'delete_post.html', {'post': post})

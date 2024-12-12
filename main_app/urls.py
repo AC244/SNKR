@@ -17,5 +17,10 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('users/', views.user_list, name='user_list'),
     path('profile/<int:user_id>/', views.user_profile, name='user_profile'),
+    path('forum/', views.forum, name='forum'),
+    path('forum/new/', views.create_post, name='create_post'),
+    path('forum/<int:pk>/edit/', views.update_post, name='update_post'),
+    path('forum/<int:pk>/delete/', views.delete_post, name='delete_post'),
+
 
 ]

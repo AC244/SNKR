@@ -3,6 +3,7 @@ from .models import Shoe
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import ForumPost
 
 
 
@@ -12,7 +13,14 @@ class ShoeForm(forms.ModelForm):
         fields = ['name', 'brand', 'price', 'style', 'image_url']
 
 
-
+class ForumPostForm(forms.ModelForm):
+    class Meta:
+        model = ForumPost
+        fields = ['title', 'content', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Enter title'}),
+            'content': forms.Textarea(attrs={'class': 'form-textarea', 'placeholder': 'Write your post...'}),
+        }
 
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(
