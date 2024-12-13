@@ -1,8 +1,3 @@
-from dotenv import load_dotenv
-import os
-import dj_database_url
-
-load_dotenv()
 
 
 """
@@ -17,8 +12,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import os
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+import dj_database_url
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,7 +34,7 @@ if not 'ON_HEROKU' in os.environ:
     DEBUG = True
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -151,9 +150,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'main_app/static')]
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [BASE_DIR / "main_app" / "static"]
 
 
 # Default primary key field type
@@ -163,3 +160,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'landing_page'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
