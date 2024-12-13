@@ -150,7 +150,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_DIRS = [BASE_DIR / "main_app" / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "main_app" / "static"]
 
 
 # Default primary key field type
@@ -160,4 +160,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'landing_page'
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
