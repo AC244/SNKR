@@ -8,7 +8,7 @@
 * Responsive Design: Built with custom CSS for a modern dark-themed aesthetic that works seamlessly across devices.
 ### Technologies Used
 * Backend: Django, PostgreSQL
-* Frontend: HTML, CSS, JavaScript
+* Frontend: HTML, CSS
 * Authentication: Django’s built-in authentication system
 * Image Uploads: Managed using Django static and media files
 * Database Connection: Psycopg2 for PostgreSQL
