@@ -14,4 +14,4 @@
 * Database Connection: Psycopg2 for PostgreSQL
     
 ### Deployed Site: https://snkr-81ecf1b6fbbd.herokuapp.com/
-### Planning site Trello: https://trello.com/b/PxesGKSO/project-4*
+### Planning site Trello: https://trello.com/b/PxesGKSO/project-4
